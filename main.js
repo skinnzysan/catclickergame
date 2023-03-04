@@ -124,6 +124,8 @@ function saveGame() {
     cursorAmount: cursorAmount,
     catLadyCost: catLadyCost,
     catLadyAmount: catLadyAmount,
+    catTowerCost: catTowerCost,
+    catTowerAmount: catTowerAmount,
     selectedcat: selectedcat,
     popcatbought: popcat.bought
   };
@@ -155,6 +157,12 @@ window.onload = function loadGame() {
   if (typeof savedGame.catLadyAmount !== "undefined") {
     catLadyAmount = savedGame.catLadyAmount;
   }
+  if (typeof savedGame.catTowerCost !== "undefined") {
+    catTowerCost = savedGame.catTowerCost;
+  }
+  if (typeof savedGame.catTowerAmount !== "undefined") {
+    catTowerAmount = savedGame.catTowerAmount;
+  }
   if (typeof savedGame.selectedcat !== "undefined") {
     selectedcat = savedGame.selectedcat;
   }
@@ -168,6 +176,8 @@ window.onload = function loadGame() {
   document.getElementById("cursorAmount").innerHTML = savedGame.cursorAmount;
   document.getElementById("catLadyCost").innerHTML = savedGame.catLadyCost;
   document.getElementById("catLadyAmount").innerHTML = savedGame.catLadyAmount;
+  document.getElementById("catTowerCost").innerHTML = savedGame.catTowerCost;
+  document.getElementById("catTowerAmount").innerHTML = savedGame.catTowerAmount;
   if (savedGame.popcatbought === "yes") {
     document.getElementById("popcatbought").innerHTML = "Bought";
   }
