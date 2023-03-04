@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" type="image" href="logo.png" />
     <title>Cat Clicker</title>
   </head>
   <body>
@@ -13,12 +14,12 @@
       <h1>Store</h1>
       <ul>
         <li>
-          <h2 onclick="buyCursor()">Cursor</h2>
+          <h2 onclick="buyCursor()">Cursor (1 cps)</h2>
           <span id="cursorCost">15</span> coins<br />
           You have <span id="cursorAmount">0</span> cursors
         </li>
         <li>
-          <h2 onclick="buyCatLady()">Cat Lady</h2>
+          <h2 onclick="buyCatLady()">Cat Lady (5 cps)</h2>
           <span id="catLadyCost">100</span> coins<br />
           You have <span id="catLadyAmount">0</span> cat ladies
         </li>
@@ -44,6 +45,10 @@
     <p>Press cat to cat</p>
     <p><span id="persec">0</span> coins per second</p>
     <p>Cat coins: <span id="coins">0</span></p>
+
+    <div class="saveinfo" onclick="saveGame()">
+      The status is saved every 10 seconds. If you want to save now click on this text.
+    </div>
 
     <div class="credits">
       <p>Cat clicker made by skinnzysan</p>

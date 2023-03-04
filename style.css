@@ -87,6 +87,19 @@ li > h2:hover {
   transition: 0.5s;
 }
 
+.saveinfo {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: medium;
+}
+
+.saveinfo:hover {
+  cursor: pointer;
+}
+
 .credits {
   position: absolute;
   left: 4px;

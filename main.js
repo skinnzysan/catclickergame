@@ -97,7 +97,7 @@ function buySkin(catname) {
 
 // Save game system
 
-setInterval(function saveGame() {
+function saveGame() {
   let gameSave = {
     score: score,
     scorepersec: scorepersec,
@@ -110,6 +110,10 @@ setInterval(function saveGame() {
   };
 
   localStorage.setItem("gameSave", JSON.stringify(gameSave));
+}
+
+setInterval(function() {
+  saveGame();
 }, 10000);
 
 window.onload = function loadGame() {
