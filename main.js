@@ -1,31 +1,35 @@
+// Animation
+
+function animation() {
+  document.getElementById("cat").src = "cats/" + selectedcat + "/2.png";
+  setTimeout(function pet2() {
+    document.getElementById("cat").src = "cats/" + selectedcat + "/1.png";
+  }, 100);
+}
+
+// Score
+
 let score = 0;
 let scorepersec = 0;
-
-let cursorCost = 15;
-let cursorAmount = 0;
-
-let catLadyCost = 100;
-let catLadyAmount = 0;
-
-let selectedcat = "petcat";
-
-let petcat = {
-  name: "petcat",
-  bought: "yes",
-  price: 0
-};
-
-let popcat = {
-  name: "popcat",
-  bought: "no",
-  price: 250
-};
 
 function addScore(amount) {
   animation();
   score += amount;
   document.getElementById("coins").innerHTML = score;
 }
+
+setInterval(function() {
+  score = score + cursorAmount + catLadyAmount * 5;
+  if (scorepersec >= 1) {
+    animation();
+  }
+  document.getElementById("coins").innerHTML = score;
+}, 1000);
+
+// Cursors
+
+let cursorCost = 15;
+let cursorAmount = 0;
 
 function buyCursor() {
   if (score >= cursorCost) {
@@ -41,10 +45,15 @@ function buyCursor() {
   }
 }
 
+// Cat Ladies
+
+let catLadyCost = 100;
+let catLadyAmount = 0;
+
 function buyCatLady() {
   if (score >= catLadyCost) {
     score -= catLadyCost;
-    scorepersec += 2;
+    scorepersec += 5;
     catLadyCost = Math.round(catLadyCost * 1.15);
     catLadyAmount++;
 
@@ -54,6 +63,22 @@ function buyCatLady() {
     document.getElementById("catLadyAmount").innerHTML = catLadyAmount;
   }
 }
+
+// Skins
+
+let selectedcat = "petcat";
+
+let petcat = {
+  name: "petcat",
+  bought: "yes",
+  price: 0
+};
+
+let popcat = {
+  name: "popcat",
+  bought: "no",
+  price: 250
+};
 
 function buySkin(catname) {
   if (catname.bought === "no" && score >= catname.price) {
@@ -70,17 +95,57 @@ function buySkin(catname) {
   }
 }
 
-function animation() {
-  document.getElementById("cat").src = "cats/" + selectedcat + "/2.png";
-  setTimeout(function pet2() {
-    document.getElementById("cat").src = "cats/" + selectedcat + "/1.png";
-  }, 100);
-}
+// Save game system
 
-setInterval(function() {
-  score = score + cursorAmount + catLadyAmount * 2;
-  if (scorepersec >= 1) {
-    animation();
+setInterval(function saveGame() {
+  let gameSave = {
+    score: score,
+    scorepersec: scorepersec,
+    cursorCost: cursorCost,
+    cursorAmount: cursorAmount,
+    catLadyCost: catLadyCost,
+    catLadyAmount: catLadyAmount,
+    selectedcat: selectedcat,
+    popcatbought: popcat.bought
+  };
+
+  localStorage.setItem("gameSave", JSON.stringify(gameSave));
+}, 10000);
+
+window.onload = function loadGame() {
+  let savedGame = JSON.parse(localStorage.getItem("gameSave"));
+  if (typeof savedGame.score !== "undefined") {
+    score = savedGame.score;
   }
-  document.getElementById("coins").innerHTML = score;
-}, 1000);
+  if (typeof savedGame.scorepersec !== "undefined") {
+    scorepersec = savedGame.scorepersec;
+  }
+  if (typeof savedGame.cursorCost !== "undefined") {
+    cursorCost = savedGame.cursorCost;
+  }
+  if (typeof savedGame.cursorAmount !== "undefined") {
+    cursorAmount = savedGame.cursorAmount;
+  }
+  if (typeof savedGame.catLadyCost !== "undefined") {
+    catLadyCost = savedGame.catLadyCost;
+  }
+  if (typeof savedGame.catLadyAmount !== "undefined") {
+    catLadyAmount = savedGame.catLadyAmount;
+  }
+  if (typeof savedGame.selectedcat !== "undefined") {
+    selectedcat = savedGame.selectedcat;
+  }
+  if (typeof savedGame.popcatbought !== "undefined") {
+    popcat.bought = savedGame.popcatbought;
+  }
+
+  document.getElementById("coins").innerHTML = savedGame.score;
+  document.getElementById("persec").innerHTML = savedGame.scorepersec;
+  document.getElementById("cursorCost").innerHTML = savedGame.cursorCost;
+  document.getElementById("cursorAmount").innerHTML = savedGame.cursorAmount;
+  document.getElementById("catLadyCost").innerHTML = savedGame.catLadyCost;
+  document.getElementById("catLadyAmount").innerHTML = savedGame.catLadyAmount;
+  if (savedGame.popcatbought === "yes") {
+    document.getElementById("popcatbought").innerHTML = "Bought";
+  }
+};

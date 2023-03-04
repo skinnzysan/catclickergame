@@ -55,6 +55,7 @@ p {
 }
 
 .store > h1 {
+  font-family: "Silkscreen", cursive;
   font-size: 50px;
 }
 
@@ -68,6 +69,7 @@ p {
 }
 
 .skins > h1 {
+  font-family: "Silkscreen", cursive;
   font-size: 50px;
 }
 
