@@ -1,17 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Cat Clicker</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Cat Clicker</h1>
-    <img src="1.png" id="cat" onclick="pet()">
+    <div class="store">
+      <h1>Store</h1>
+      <ul>
+        <li>
+          <h2 onclick="buyCursor()">Cursor</h2>
+          <span id="cursorCost">15</span> coins<br />
+          You have <span id="cursorAmount">0</span> cursors
+        </li>
+        <li>
+          <h2 onclick="buyCatLady()">Cat Lady</h2>
+          <span id="catLadyCost">100</span> coins<br />
+          You have <span id="catLadyAmount">0</span> cat ladies
+        </li>
+      </ul>
+    </div>
+    <div class="skins">
+      <h1>Skins</h1>
+      <ul>
+        <li>
+          <h2 onclick="buySkin(petcat)">Default</h2>
+          <span id="ifbought">Bought</span>
+        </li>
+        <li>
+          <h2 onclick="buySkin(popcat)">Pop Cat</h2>
+          <span>250</span> coins<br />
+          <span id="popcatbought">Not yet bought</span>
+        </li>
+      </ul>
+    </div>
+    <img src="cats/petcat/1.png" id="cat" onclick="addScore(1)" />
     <p>Press cat to cat</p>
-    <p id="click">Cats: 0</p>
-    <script src="script.js"></script>
-</body>
+    <p><span id="persec">0</span> coins per second</p>
+    <p>Cat coins: <span id="coins">0</span></p>
+    <div class="credits">
+      <p>Cat clicker made by skinnzysan</p>
+      <p><a href="https://github.com/skinnzysan">github.com/skinnzysan</a></p>
+    </div>
+    <script src="main.js"></script>
+  </body>
 </html>
