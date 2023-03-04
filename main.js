@@ -19,7 +19,7 @@ function addScore(amount) {
 }
 
 setInterval(function() {
-  score = score + cursorAmount + catLadyAmount * 5;
+  score = score + cursorAmount + catLadyAmount * 5 + catTowerAmount * 10;
   if (scorepersec >= 1) {
     animation();
   }
@@ -47,7 +47,7 @@ function buyCursor() {
 
 // Cat Ladies
 
-let catLadyCost = 100;
+let catLadyCost = 115;
 let catLadyAmount = 0;
 
 function buyCatLady() {
@@ -61,6 +61,25 @@ function buyCatLady() {
     document.getElementById("persec").innerHTML = scorepersec;
     document.getElementById("catLadyCost").innerHTML = catLadyCost;
     document.getElementById("catLadyAmount").innerHTML = catLadyAmount;
+  }
+}
+
+// Cat Towers
+
+let catTowerCost = 1100;
+let catTowerAmount = 0;
+
+function buyCatTower() {
+  if (score >= catTowerCost) {
+    score -= catTowerCost;
+    scorepersec += 10;
+    catTowerCost = Math.round(catTowerCost * 1.15);
+    catTowerAmount++;
+
+    document.getElementById("coins").innerHTML = score;
+    document.getElementById("persec").innerHTML = scorepersec;
+    document.getElementById("catTowerCost").innerHTML = catTowerCost;
+    document.getElementById("catTowerAmount").innerHTML = catTowerAmount;
   }
 }
 
