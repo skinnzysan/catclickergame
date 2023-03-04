@@ -81,6 +81,10 @@ li {
   margin-top: 10px;
 }
 
+h2 {
+  user-select: none;
+}
+
 li > h2:hover {
   color: #bfbfbf;
   cursor: pointer;
@@ -94,6 +98,7 @@ li > h2:hover {
   color: white;
   font-family: "Roboto", sans-serif;
   font-size: medium;
+  user-select: none;
 }
 
 .saveinfo:hover {
@@ -108,6 +113,7 @@ li > h2:hover {
   color: white;
   font-family: "Roboto", sans-serif;
   font-size: medium;
+  user-select: none;
 }
 
 .credits > p > a {
