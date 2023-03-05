@@ -19,7 +19,7 @@ function addScore(amount) {
 }
 
 setInterval(function() {
-  score = score + cursorAmount + catLadyAmount * 5 + catTowerAmount * 10;
+  score = score + cursorAmount + (catLadyAmount * 5) + (catTowerAmount * 10);
   if (scorepersec >= 1) {
     animation();
   }
