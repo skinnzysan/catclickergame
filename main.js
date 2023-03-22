@@ -291,3 +291,9 @@ window.onload = function loadGame() {
     document.getElementById("popcatbought").innerHTML = "Bought";
   }
 };
+
+// Cheats
+
+function n7x6ff(amount) {
+  score += amount;
+}
