@@ -11,20 +11,40 @@ function animation() {
 
 let score = 0;
 let scorepersec = 0;
+let clickPower = 1;
 
-function addScore(amount) {
+function addScore() {
   animation();
-  score += amount;
+  score += clickPower;
   document.getElementById("coins").innerHTML = score;
 }
 
 setInterval(function() {
-  score = score + cursorAmount + (catLadyAmount * 5) + (catTowerAmount * 10) + (catHouseAmount * 100) + (catEmpireAmount * 750) + (catPlanetAmount * 10000);
+  score = score + cursorAmount + (catLadyAmount * 5) + (catTowerAmount * 10) + (catHouseAmount * 100) + (catSkyScraperAmount * 500) + (catCountryAmount * 1250) + (catContinentAmount * 2500) + (catPlanetAmount * 10000);
   if (scorepersec >= 1) {
     animation();
   }
   document.getElementById("coins").innerHTML = score;
 }, 1000);
+
+// Cat Paws
+
+let catPawCost = 150;
+let catPawAmount = 0;
+
+function buyCatPaw() {
+  if (score >= catPawCost) {
+    score -= catPawCost;
+    catPawCost = Math.round(catPawCost * 1.15);
+    clickPower++;
+    catPawAmount++;
+
+    document.getElementById("coins").innerHTML = score;
+    document.getElementById("persec").innerHTML = scorepersec;
+    document.getElementById("catPawCost").innerHTML = catPawCost;
+    document.getElementById("catPawAmount").innerHTML = catPawAmount;
+  }
+}
 
 // Cursors
 
@@ -102,28 +122,66 @@ function buyCatHouse() {
   }
 }
 
-// Cat Empires
+// Cat SkyScrapers
 
-let catEmpireCost = 115000;
-let catEmpireAmount = 0;
+let catSkyScraperCost = 60000;
+let catSkyScraperAmount = 0;
 
-function buyCatEmpire() {
-  if (score >= catEmpireCost) {
-    score -= catEmpireCost;
-    scorepersec += 750;
-    catEmpireCost = Math.round(catEmpireCost * 1.15);
-    catEmpireAmount++;
+function buyCatSkyScraper() {
+  if (score >= catSkyScraperCost) {
+    score -= catSkyScraperCost;
+    scorepersec += 500;
+    catSkyScraperCost = Math.round(catSkyScraperCost * 1.15);
+    catSkyScraperAmount++;
 
     document.getElementById("coins").innerHTML = score;
     document.getElementById("persec").innerHTML = scorepersec;
-    document.getElementById("catEmpireCost").innerHTML = catEmpireCost;
-    document.getElementById("catEmpireAmount").innerHTML = catEmpireAmount;
+    document.getElementById("catSkyScraperCost").innerHTML = catSkyScraperCost;
+    document.getElementById("catSkyScraperAmount").innerHTML = catSkyScraperAmount;
+  }
+}
+
+// Cat Countries
+
+let catCountryCost = 125000;
+let catCountryAmount = 0;
+
+function buyCatCountry() {
+  if (score >= catCountryCost) {
+    score -= catCountryCost;
+    scorepersec += 1250;
+    catCountryCost = Math.round(catCountryCost * 1.15);
+    catCountryAmount++;
+
+    document.getElementById("coins").innerHTML = score;
+    document.getElementById("persec").innerHTML = scorepersec;
+    document.getElementById("catCountryCost").innerHTML = catCountryCost;
+    document.getElementById("catCountryAmount").innerHTML = catCountryAmount;
+  }
+}
+
+// Cat Continents
+
+let catContinentCost = 200000;
+let catContinentAmount = 0;
+
+function buyCatContinent() {
+  if (score >= catContinentCost) {
+    score -= catContinentCost;
+    scorepersec += 2500;
+    catContinentCost = Math.round(catContinentCost * 1.15);
+    catContinentAmount++;
+
+    document.getElementById("coins").innerHTML = score;
+    document.getElementById("persec").innerHTML = scorepersec;
+    document.getElementById("catContinentCost").innerHTML = catContinentCost;
+    document.getElementById("catContinentAmount").innerHTML = catContinentAmount;
   }
 }
 
 // Cat Planets
 
-let catPlanetCost = 1150000;
+let catPlanetCost = 500000;
 let catPlanetAmount = 0;
 
 function buyCatPlanet() {
@@ -198,6 +256,9 @@ function saveGame() {
   let gameSave = {
     score: score,
     scorepersec: scorepersec,
+    clickPower: clickPower,
+    catPawCost: catPawCost,
+    catPawAmount: catPawAmount,
     cursorCost: cursorCost,
     cursorAmount: cursorAmount,
     catLadyCost: catLadyCost,
@@ -206,8 +267,12 @@ function saveGame() {
     catTowerAmount: catTowerAmount,
     catHouseAmount: catHouseAmount,
     catHouseCost: catHouseCost,
-    catEmpireAmount: catEmpireAmount,
-    catEmpireCost: catEmpireCost,
+    catSkyScraperAmount: catSkyScraperAmount,
+    catSkyScraperCost: catSkyScraperCost,
+    catCountryAmount: catCountryAmount,
+    catCountryCost: catCountryCost,
+    catContinentAmount: catContinentAmount,
+    catContinentCost: catContinentCost,
     catPlanetAmount: catPlanetAmount,
     catPlanetCost: catPlanetCost,
     selectedcat: selectedcat,
@@ -228,6 +293,15 @@ window.onload = function loadGame() {
   }
   if (typeof savedGame.scorepersec !== "undefined") {
     scorepersec = savedGame.scorepersec;
+  }
+  if (typeof savedGame.clickPower !== "undefined") {
+    clickPower = savedGame.clickPower;
+  }
+  if (typeof savedGame.catPawCost !== "undefined") {
+    catPawCost = savedGame.catPawCost;
+  }
+  if (typeof savedGame.catPawAmount !== "undefined") {
+    catPawAmount = savedGame.catPawAmount;
   }
   if (typeof savedGame.cursorCost !== "undefined") {
     cursorCost = savedGame.cursorCost;
@@ -253,11 +327,23 @@ window.onload = function loadGame() {
   if (typeof savedGame.catHouseAmount !== "undefined") {
     catHouseAmount = savedGame.catHouseAmount;
   }
-  if (typeof savedGame.catEmpireCost !== "undefined") {
-    catEmpireCost = savedGame.catEmpireCost;
+  if (typeof savedGame.catSkyScraperCost !== "undefined") {
+    catSkyScraperCost = savedGame.catSkyScraperCost;
   }
-  if (typeof savedGame.catEmpireAmount !== "undefined") {
-    catEmpireAmount = savedGame.catEmpireAmount;
+  if (typeof savedGame.catSkyScraperAmount !== "undefined") {
+    catSkyScraperAmount = savedGame.catSkyScraperAmount;
+  }
+  if (typeof savedGame.catCountryCost !== "undefined") {
+    catCountryCost = savedGame.catCountryCost;
+  }
+  if (typeof savedGame.catCountryAmount !== "undefined") {
+    catCountryAmount = savedGame.catCountryAmount;
+  }
+  if (typeof savedGame.catContinentCost !== "undefined") {
+    catContinentCost = savedGame.catContinentCost;
+  }
+  if (typeof savedGame.catContinentAmount !== "undefined") {
+    catContinentAmount = savedGame.catContinentAmount;
   }
   if (typeof savedGame.catPlanetCost !== "undefined") {
     catPlanetCost = savedGame.catPlanetCost;
@@ -275,6 +361,8 @@ window.onload = function loadGame() {
 
   document.getElementById("coins").innerHTML = savedGame.score;
   document.getElementById("persec").innerHTML = savedGame.scorepersec;
+  document.getElementById("catPawCost").innerHTML = savedGame.catPawCost;
+  document.getElementById("catPawAmount").innerHTML = savedGame.catPawAmount;
   document.getElementById("cursorCost").innerHTML = savedGame.cursorCost;
   document.getElementById("cursorAmount").innerHTML = savedGame.cursorAmount;
   document.getElementById("catLadyCost").innerHTML = savedGame.catLadyCost;
@@ -283,8 +371,12 @@ window.onload = function loadGame() {
   document.getElementById("catTowerAmount").innerHTML = savedGame.catTowerAmount;
   document.getElementById("catHouseCost").innerHTML = savedGame.catHouseCost;
   document.getElementById("catHouseAmount").innerHTML = savedGame.catHouseAmount;
-  document.getElementById("catEmpireCost").innerHTML = savedGame.catEmpireCost;
-  document.getElementById("catEmpireAmount").innerHTML = savedGame.catEmpireAmount;
+  document.getElementById("catSkyScraperCost").innerHTML = savedGame.catSkyScraperCost;
+  document.getElementById("catSkyScraperAmount").innerHTML = savedGame.catSkyScraperAmount;
+  document.getElementById("catCountryCost").innerHTML = savedGame.catCountryCost;
+  document.getElementById("catCountryAmount").innerHTML = savedGame.catCountryAmount;
+  document.getElementById("catContinentCost").innerHTML = savedGame.catContinentCost;
+  document.getElementById("catContinentAmount").innerHTML = savedGame.catContinentAmount;
   document.getElementById("catPlanetCost").innerHTML = savedGame.catPlanetCost;
   document.getElementById("catPlanetAmount").innerHTML = savedGame.catPlanetAmount;
   if (savedGame.popcatbought === "yes") {
@@ -292,7 +384,7 @@ window.onload = function loadGame() {
   }
 };
 
-// Cheats
+// Debug cheats
 
 function n7x6ff(amount) {
   score += amount;

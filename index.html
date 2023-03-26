@@ -14,6 +14,11 @@
       <h1>Store</h1>
       <ul>
         <li>
+          <h2 onclick="buyCatPaw()">Cat Paw (1 cpc)</h2>
+          <span id="catPawCost">150</span> coins<br />
+          You have <span id="catPawAmount">0</span> cat paws
+        </li>
+        <li>
           <h2 onclick="buyCursor()">Cursor (1 cps)</h2>
           <span id="cursorCost">15</span> coins<br />
           You have <span id="cursorAmount">0</span> cursors
@@ -34,13 +39,23 @@
           You have <span id="catHouseAmount">0</span> cat houses
         </li>
         <li>
-          <h2 onclick="buyCatEmpire()">Cat Empire (750 cps)</h2>
-          <span id="catEmpireCost">115000</span> coins<br />
-          You have <span id="catEmpireAmount">0</span> cat empires
+          <h2 onclick="buyCatSkyScraper()">Cat Skyscraper (500 cps)</h2>
+          <span id="catSkyScraperCost">60000</span> coins<br />
+          You have <span id="catSkyScraperAmount">0</span> cat skyscrapers
+        </li>
+        <li>
+          <h2 onclick="buyCatCountry()">Cat Country (1250 cps)</h2>
+          <span id="catCountryCost">125000</span> coins<br />
+          You have <span id="catCountryAmount">0</span> cat countries
+        </li>
+        <li>
+          <h2 onclick="buyCatContinent()">Cat Continent (2500 cps)</h2>
+          <span id="catContinentCost">200000</span> coins<br />
+          You have <span id="catContinentAmount">0</span> cat continents
         </li>
         <li>
           <h2 onclick="buyCatPlanet()">Cat Planet (10000 cps)</h2>
-          <span id="catPlanetCost">1150000</span> coins<br />
+          <span id="catPlanetCost">500000</span> coins<br />
           You have <span id="catPlanetAmount">0</span> cat planets
         </li>
       </ul>
@@ -71,7 +86,7 @@
       </ul>
     </div>
 
-    <img src="cats/petcat/1.png" id="cat" onclick="addScore(1)" />
+    <img src="cats/petcat/1.png" id="cat" onclick="addScore()" />
     <p>Press cat to cat</p>
     <p><span id="persec">0</span> coins per second</p>
     <p>Cat coins: <span id="coins">0</span></p>

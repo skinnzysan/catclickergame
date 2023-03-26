@@ -5,6 +5,23 @@
   padding: 0;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #39a2ae;
+}
+
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 25px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #bfbfbf;
+}
+
 body {
   height: 100vh;
   width: 100vw;
@@ -47,11 +64,14 @@ p {
 }
 
 .store {
-  height: 100vh;
+  height: 80vh;
+  width: 400px;
   position: absolute;
+  top: 0;
   left: 0;
   margin-left: 20px;
   color: white;
+  overflow: auto;
 }
 
 .store > h1 {
